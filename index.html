@@ -19,30 +19,89 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
-            background: var(--background-gradient); background-attachment: fixed;
-            color: var(--text-main); line-height: 1.6; display: flex;
-            justify-content: center; align-items: center; min-height: 100vh; padding: 2rem 1rem;
+            background: var(--background-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 2rem 1rem;
         }
 
         .container {
-            background-color: var(--white); max-width: 650px; width: 100%;
-            border-radius: 16px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); overflow: hidden;
+            background-color: var(--white);
+            max-width: 680px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
 
-        .header { background-color: rgba(37, 99, 235, 0.05); padding: 2.5rem 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
+        /* ====== HEADER ====== */
+        .header {
+            background-color: rgba(37, 99, 235, 0.05);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
         .header h1 { color: var(--primary-color); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
         .header p { color: var(--text-light); font-size: 0.95rem; }
 
+        /* ====== TAB NAVIGATION ====== */
+        .tab-nav {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 1rem 0.5rem;
+            border: none;
+            background: transparent;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .tab-btn:hover { color: var(--primary-color); background: rgba(37, 99, 235, 0.04); }
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.06);
+            font-weight: 600;
+        }
+        .tab-icon { font-size: 1rem; }
+
+        /* ====== TAB CONTENT ====== */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ====== FORM (TAB 1) ====== */
         .form-container { padding: 2.5rem 2rem; }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; }
-        
-        .form-control {
-            width: 100%; padding: 0.75rem 1rem; font-size: 1rem;
-            border: 2px solid var(--border-color); border-radius: 8px;
-            transition: all 0.3s ease; background-color: #f9fafb; color: var(--text-main);
-        }
 
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+        }
         .form-control:focus { outline: none; border-color: var(--primary-color); background-color: var(--white); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
         textarea.form-control { resize: vertical; min-height: 120px; }
 
@@ -50,30 +109,200 @@
         .col { flex: 1; }
 
         .btn-submit {
-            width: 100%; background-color: var(--primary-color); color: var(--white);
-            padding: 1rem; font-size: 1.1rem; font-weight: 600; border: none;
-            border-radius: 8px; cursor: pointer; transition: all 0.3s ease; margin-top: 1rem;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-family: 'Poppins', sans-serif;
         }
-        .btn-submit:hover { background-color: var(--primary-hover); }
-        .btn-submit:disabled { background-color: #9ca3af; cursor: not-allowed; }
+        .btn-submit:hover { background-color: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+        .btn-submit:disabled { background-color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        .footer { text-align: center; padding: 1.5rem; background-color: #f3f4f6; color: var(--text-light); font-size: 0.85rem; border-top: 1px solid var(--border-color); }
+        /* ====== CEK STATUS (TAB 2) ====== */
+        .status-container { padding: 2.5rem 2rem; }
+        .status-container h3 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.4rem; }
+        .status-container .hint { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem; }
 
+        .search-box { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .search-box .form-control { flex: 1; margin: 0; }
+        .btn-cari {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-cari:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        .btn-cari:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .spinner::before {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 0.75rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Result area */
+        #status-result { display: none; margin-top: 1.5rem; }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .result-title { font-weight: 600; font-size: 0.95rem; color: var(--text-main); }
+        .result-count {
+            font-size: 0.8rem;
+            background: #eff6ff;
+            color: var(--primary-color);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Ticket card */
+        .ticket-card {
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.2rem 1.25rem;
+            margin-bottom: 0.85rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .ticket-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); border-color: #d1d5db; }
+        .ticket-card.selesai { border-left: 4px solid #16a34a; }
+        .ticket-card.proses  { border-left: 4px solid #d97706; }
+        .ticket-card.baru    { border-left: 4px solid #2563eb; }
+
+        .ticket-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+        .ticket-meta { font-size: 0.78rem; color: var(--text-light); }
+        .ticket-meta span { font-weight: 500; color: var(--text-main); }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.22rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .badge-baru    { background: #eff6ff; color: #1d4ed8; }
+        .badge-proses  { background: #fffbeb; color: #b45309; }
+        .badge-selesai { background: #f0fdf4; color: #15803d; }
+
+        .ticket-kategori {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            font-size: 0.76rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+        .ticket-desc { font-size: 0.9rem; color: var(--text-main); margin-bottom: 0.5rem; }
+        .ticket-solution {
+            font-size: 0.83rem;
+            color: #374151;
+            background: #f0fdf4;
+            padding: 0.6rem 0.9rem;
+            border-radius: 6px;
+            border-left: 3px solid #16a34a;
+            margin-top: 0.6rem;
+        }
+        .ticket-solution strong { display: block; font-size: 0.76rem; color: #15803d; margin-bottom: 0.2rem; }
+        .ticket-officer { font-size: 0.8rem; color: var(--text-light); margin-top: 0.4rem; }
+
+        /* Empty & error state */
+        .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--text-light); }
+        .empty-state .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .empty-state p { font-size: 0.9rem; }
+        .empty-state .sub { font-size: 0.82rem; margin-top: 0.3rem; }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            font-size: 0.83rem;
+            color: #1d4ed8;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #f3f4f6;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 600px) {
             .row { flex-direction: column; gap: 0; }
             .header h1 { font-size: 1.5rem; }
-            .form-container { padding: 1.5rem; }
+            .form-container, .status-container { padding: 1.5rem; }
+            .search-box { flex-direction: column; }
+            .btn-cari { width: 100%; }
+            .tab-btn { font-size: 0.82rem; padding: 0.85rem 0.25rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>Layanan Pengaduan TIK</h1>
-            <p>KPPN Masohi - Sampaikan kendala sarana dan prasarana Anda di sini.</p>
-        </div>
+<div class="container">
 
+    <!-- HEADER -->
+    <div class="header">
+        <h1>🖥️ Layanan Pengaduan TIK</h1>
+        <p>KPPN Masohi &mdash; Teknologi Informasi &amp; Komunikasi</p>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('form', this)">
+            <span class="tab-icon">📋</span> Form Pengaduan
+        </button>
+        <button class="tab-btn" onclick="switchTab('status', this)">
+            <span class="tab-icon">🔍</span> Cek Status Tiket
+        </button>
+    </div>
+
+    <!-- TAB 1: FORM PENGADUAN -->
+    <div id="tab-form" class="tab-content active">
         <div class="form-container">
             <form id="form-pengaduan">
                 <div class="row">
@@ -121,80 +350,260 @@
                 <div class="form-group">
                     <label>Lampiran Foto/Screenshot (Opsional)</label>
                     <input type="file" id="lampiran" class="form-control" accept="image/*">
-                    <small style="color: #6b7280; font-size: 0.8rem; margin-top: 5px; display: block;">*Format: JPG/PNG. Maksimal 3MB.</small>
+                    <small style="color: #6b7280; font-size: 0.8rem; margin-top: 5px; display: block;">*Format: JPG/PNG. Maksimal 3MB agar proses upload cepat.</small>
                 </div>
 
                 <button type="submit" class="btn-submit" id="btn-submit">Kirim Pengaduan</button>
             </form>
         </div>
+    </div>
 
-        <div class="footer">
-            &copy; 2026 KPPN Masohi. Dikelola oleh Tim TIK.
+    <!-- TAB 2: CEK STATUS -->
+    <div id="tab-status" class="tab-content">
+        <div class="status-container">
+            <h3>Cek Status Tiket Anda</h3>
+            <p class="hint">Masukkan NIP/NRP untuk melihat semua tiket pengaduan Anda.</p>
+
+            <div class="info-box">
+                ℹ️ Status diperbarui oleh Tim TIK secara langsung. Refresh halaman jika ingin mengecek ulang.
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="input-nip" class="form-control" placeholder="Masukkan NIP / NRP Anda...">
+                <button class="btn-cari" id="btn-cari" onclick="cekStatus()">🔍 Cari</button>
+            </div>
+
+            <div class="spinner" id="spinner">Memuat data tiket...</div>
+
+            <div id="status-result">
+                <div class="result-header">
+                    <span class="result-title">Hasil Pencarian</span>
+                    <span class="result-count" id="result-count">0 tiket</span>
+                </div>
+                <div id="tiket-list"></div>
+            </div>
         </div>
     </div>
 
-    <script>
-        // --- GANTI URL DI BAWAH INI DENGAN URL DARI LANGKAH 1 ---
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz1Uk1E7_s0XcjMyrjJG55fZczZXa3mWAq2ENiRruLkeZyS6elN2dnwy3osjloaueg/exec'; 
-        
-        const form = document.getElementById('form-pengaduan');
-        const btnSubmit = document.getElementById('btn-submit');
-        const fileInput = document.getElementById('lampiran');
+    <!-- FOOTER -->
+    <div class="footer">
+        &copy; 2026 KPPN Masohi. Dikelola oleh Tim TIK.
+    </div>
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            
-            btnSubmit.innerHTML = 'Mengirim Data... Mohon Tunggu';
-            btnSubmit.disabled = true;
+</div>
 
-            const formData = new FormData(form);
-            const file = fileInput.files[0];
+<script>
+    /* ============================================================
+       KONFIGURASI — Ganti SHEET_ID jika sheet berubah
+    ============================================================ */
+    const SHEET_ID = '17YIr5TBc46UphUuNNYfLyTrGUofX74hDzyr71vEQYig';
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64Data = event.target.result.split(',')[1];
-                    const urlParams = new URLSearchParams();
-                    for (const pair of formData.entries()) {
-                        urlParams.append(pair[0], pair[1]);
-                    }
-                    urlParams.append('fileData', base64Data);
-                    urlParams.append('mimeType', file.type);
-                    urlParams.append('fileName', file.name);
+    /* ============================================================
+       APPS SCRIPT URL untuk submit form
+    ============================================================ */
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz1Uk1E7_s0XcjMyrjJG55fZczZXa3mWAq2ENiRruLkeZyS6elN2dnwy3osjloaueg/exec';
 
-                    kirimKeServer(urlParams);
-                };
-                reader.readAsDataURL(file);
-            } else {
-                const urlParams = new URLSearchParams();
-                for (const pair of formData.entries()) {
-                    urlParams.append(pair[0], pair[1]);
-                }
-                kirimKeServer(urlParams);
-            }
-        });
+    /* ============================================================
+       TAB SWITCHING
+    ============================================================ */
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById('tab-' + tab).classList.add('active');
+        btn.classList.add('active');
+    }
 
-        function kirimKeServer(dataParams) {
-            fetch(scriptURL, { 
-                method: 'POST', 
-                mode: 'no-cors', // INI KUNCI UTAMA AGAR LOLOS DI VERCEL
-                body: dataParams,
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-            .then(() => {
-                // Karena no-cors, kita tidak menerima respon balik dari server. Kita asumsikan sukses.
-                alert('Berhasil! Pengaduan Anda telah dikirim ke Tim TIK KPPN Masohi.');
-                form.reset();
-                btnSubmit.innerHTML = 'Kirim Pengaduan';
-                btnSubmit.disabled = false;
-            })
-            .catch(error => {
-                alert('Gagal mengirim data. Pastikan perangkat terhubung ke internet.');
-                console.error('Error!', error);
-                btnSubmit.innerHTML = 'Kirim Pengaduan';
-                btnSubmit.disabled = false;
-            });
+    /* ============================================================
+       CEK STATUS — Ambil data dari Google Sheets
+    ============================================================ */
+    async function cekStatus() {
+        const nip = document.getElementById('input-nip').value.trim();
+        if (!nip) {
+            alert('Masukkan NIP / NRP Anda terlebih dahulu.');
+            return;
         }
-    </script>
+
+        const spinner = document.getElementById('spinner');
+        const result  = document.getElementById('status-result');
+        const btnCari = document.getElementById('btn-cari');
+
+        spinner.style.display = 'block';
+        result.style.display  = 'none';
+        btnCari.disabled = true;
+
+        try {
+            const res  = await fetch(SHEET_URL);
+            const text = await res.text();
+
+            // Google Sheets mengembalikan JSONP — kita parsing manual
+            const jsonStr = text.replace(/^[^{]*/, '').replace(/[^}]*$/, '');
+            const json    = JSON.parse(jsonStr);
+
+            const cols = json.table.cols.map(c => (c.label || '').trim());
+            const rows = json.table.rows || [];
+
+            // Cari index kolom (case-insensitive, fleksibel)
+            const idx = name => cols.findIndex(c => c.toLowerCase().includes(name.toLowerCase()));
+
+            const iTimestamp = idx('timestamp') !== -1 ? idx('timestamp') : 0;
+            const iNama      = idx('nama');
+            const iNIP       = idx('nip');
+            const iSeksi     = idx('seksi');
+            const iKategori  = idx('kategori');
+            const iDeskripsi = idx('deskripsi');
+            const iStatus    = idx('status');
+            const iPetugas   = idx('petugas');
+            const iSolusi    = idx('solusi') !== -1 ? idx('solusi') : idx('uraian');
+
+            // Filter baris berdasarkan NIP
+            const getCellVal = (row, i) => {
+                if (i < 0 || !row.c[i]) return '';
+                const cell = row.c[i];
+                // Timestamp Google Sheets datang sebagai "Date(2026,0,5,...)"
+                if (i === iTimestamp && cell.f) return cell.f;
+                return cell.v !== null && cell.v !== undefined ? String(cell.v) : '';
+            };
+
+            const matched = rows.filter(row => {
+                const nipVal = getCellVal(row, iNIP).replace(/\s/g, '');
+                return nipVal === nip.replace(/\s/g, '');
+            });
+
+            tampilkanTiket(matched, { iTimestamp, iNama, iNIP, iSeksi, iKategori, iDeskripsi, iStatus, iPetugas, iSolusi }, getCellVal);
+
+        } catch (err) {
+            console.error(err);
+            document.getElementById('tiket-list').innerHTML = `
+                <div class="empty-state">
+                    <div class="icon">⚠️</div>
+                    <p>Gagal mengambil data.</p>
+                    <p class="sub">Pastikan koneksi internet Anda aktif, lalu coba lagi.</p>
+                </div>`;
+            result.style.display = 'block';
+        } finally {
+            spinner.style.display = 'none';
+            btnCari.disabled = false;
+        }
+    }
+
+    function tampilkanTiket(rows, idx, getCellVal) {
+        const list   = document.getElementById('tiket-list');
+        const count  = document.getElementById('result-count');
+        const result = document.getElementById('status-result');
+
+        count.textContent = `${rows.length} tiket ditemukan`;
+        result.style.display = 'block';
+
+        if (rows.length === 0) {
+            list.innerHTML = `
+                <div class="empty-state">
+                    <div class="icon">📭</div>
+                    <p>Tidak ada tiket ditemukan untuk NIP tersebut.</p>
+                    <p class="sub">Periksa kembali NIP/NRP yang Anda masukkan.</p>
+                </div>`;
+            return;
+        }
+
+        // Urutkan dari yang terbaru
+        list.innerHTML = rows.reverse().map((row, i) => {
+            const tanggal  = getCellVal(row, idx.iTimestamp) || '-';
+            const kategori = getCellVal(row, idx.iKategori)  || '-';
+            const deskripsi= getCellVal(row, idx.iDeskripsi) || '-';
+            const status   = getCellVal(row, idx.iStatus)    || 'Belum Ditangani';
+            const petugas  = getCellVal(row, idx.iPetugas)   || '';
+            const solusi   = getCellVal(row, idx.iSolusi)    || '';
+
+            const statusKey = status.toLowerCase().includes('selesai') ? 'selesai'
+                            : status.toLowerCase().includes('proses')  ? 'proses'
+                            : 'baru';
+
+            const badgeText = statusKey === 'selesai' ? '✅ Selesai'
+                            : statusKey === 'proses'  ? '⏳ Dalam Proses'
+                            : '🔵 Belum Ditangani';
+
+            const solusiHTML = (solusi && statusKey === 'selesai') ? `
+                <div class="ticket-solution">
+                    <strong>💬 Solusi dari Tim TIK</strong>
+                    ${solusi}
+                </div>` : '';
+
+            const petugasHTML = petugas ? `
+                <div class="ticket-officer">👤 Ditangani oleh: <strong>${petugas}</strong></div>` : '';
+
+            return `
+            <div class="ticket-card ${statusKey}">
+                <div class="ticket-top">
+                    <div class="ticket-meta">📅 ${tanggal}</div>
+                    <span class="badge badge-${statusKey}">${badgeText}</span>
+                </div>
+                <div class="ticket-kategori">${kategori}</div>
+                <div class="ticket-desc">${deskripsi}</div>
+                ${petugasHTML}
+                ${solusiHTML}
+            </div>`;
+        }).join('');
+    }
+
+    /* Enter key on NIP input */
+    document.getElementById('input-nip').addEventListener('keydown', e => {
+        if (e.key === 'Enter') cekStatus();
+    });
+
+    /* ============================================================
+       FORM SUBMIT — tidak berubah dari versi asli
+    ============================================================ */
+    const form      = document.getElementById('form-pengaduan');
+    const btnSubmit = document.getElementById('btn-submit');
+    const fileInput = document.getElementById('lampiran');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btnSubmit.innerHTML = '⏳ Mengirim Data... Mohon Tunggu';
+        btnSubmit.disabled  = true;
+
+        const formData = new FormData(form);
+        const file     = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64Data = event.target.result.split(',')[1];
+                const urlParams  = new URLSearchParams();
+                for (const pair of formData.entries()) urlParams.append(pair[0], pair[1]);
+                urlParams.append('fileData', base64Data);
+                urlParams.append('mimeType', file.type);
+                urlParams.append('fileName', file.name);
+                kirimKeServer(urlParams);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            const urlParams = new URLSearchParams();
+            for (const pair of formData.entries()) urlParams.append(pair[0], pair[1]);
+            kirimKeServer(urlParams);
+        }
+    });
+
+    function kirimKeServer(dataParams) {
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: dataParams,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(() => {
+            alert('✅ Berhasil! Pengaduan Anda telah dikirim ke Tim TIK KPPN Masohi.');
+            form.reset();
+            btnSubmit.innerHTML = 'Kirim Pengaduan';
+            btnSubmit.disabled  = false;
+        })
+        .catch(error => {
+            alert('❌ Gagal mengirim data. Pastikan perangkat terhubung ke internet.');
+            console.error('Error!', error);
+            btnSubmit.innerHTML = 'Kirim Pengaduan';
+            btnSubmit.disabled  = false;
+        });
+    }
+</script>
 </body>
 </html>
