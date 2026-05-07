@@ -108,10 +108,11 @@
                         <label for="seksi">Seksi / Subbagian</label>
                         <select id="seksi" name="seksi" class="form-control" required>
                             <option value="" disabled selected>Pilih Seksi/Subbagian</option>
-                            <option value="Subbagian Umum">Subbagian Umum</option>
-                            <option value="Seksi PDMS">Seksi PDMS</option>
+                            <option value="Subbag Umum">Subbag Umum</option>
+                            <option value="Seksi PD">Seksi PD</option>
+                            <option value="Seksi MSKI">Seksi MSKI</option>
+                            <option value="Seksi Vera">Seksi Vera</option>
                             <option value="Seksi Bank">Seksi Bank</option>
-                            <option value="Seksi VeraKI">Seksi VeraKI</option>
                             <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
@@ -133,7 +134,6 @@
                     <textarea id="deskripsi" name="deskripsi" class="form-control" placeholder="Jelaskan secara detail kendala yang dialami..." required></textarea>
                 </div>
 
-                <!-- Form Upload Gambar Ditambahkan Kembali -->
                 <div class="form-group">
                     <label for="lampiran">Lampiran Foto/Screenshot (Opsional)</label>
                     <input type="file" id="lampiran" name="lampiran" class="form-control" accept="image/*">
@@ -150,8 +150,8 @@
     </div>
 
     <script>
-        // PENTING: Masukkan URL Web App Apps Script Anda di sini
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz1Uk1E7_s0XcjMyrjJG55fZczZXa3mWAq2ENiRruLkeZyS6elN2dnwy3osjloaueg/exec'; 
+        // PENTING: Ganti URL di bawah ini dengan Web App URL dari Google Apps Script Anda (Hasil Deploy Terbaru)
+        const scriptURL = 'MASUKKAN_URL_WEB_APP_ANDA_DI_SINI'; 
         
         const form = document.getElementById('form-pengaduan');
         const btnSubmit = document.getElementById('btn-submit');
@@ -160,7 +160,6 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             
-            // Ubah state tombol
             btnSubmit.innerHTML = 'Mengirim Data... Mohon Tunggu';
             btnSubmit.disabled = true;
 
@@ -168,12 +167,9 @@
             const file = fileInput.files[0];
 
             if (file) {
-                // Jika ada file gambar, baca dan konversi ke Base64
                 const reader = new FileReader();
                 reader.onload = function(event) {
-                    const base64Data = event.target.result.split(',')[1]; // Mengambil string base64 saja
-                    
-                    // Kemas data ke dalam URLSearchParams agar aman dikirim ke Apps Script
+                    const base64Data = event.target.result.split(',')[1];
                     const urlParams = new URLSearchParams();
                     for (const pair of formData.entries()) {
                         if(pair[0] !== 'lampiran') urlParams.append(pair[0], pair[1]);
@@ -186,7 +182,6 @@
                 };
                 reader.readAsDataURL(file);
             } else {
-                // Jika tidak ada gambar, langsung kirim teks
                 const urlParams = new URLSearchParams();
                 for (const pair of formData.entries()) {
                     if(pair[0] !== 'lampiran') urlParams.append(pair[0], pair[1]);
@@ -198,17 +193,18 @@
         function kirimDataKeServer(dataParams) {
             fetch(scriptURL, { 
                 method: 'POST', 
+                mode: 'no-cors', // Menghindari error CORS saat dijalankan lokal/hosting statis
                 body: dataParams,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
             .then(response => {
-                alert('Terima kasih! Pengaduan Anda dan lampiran (jika ada) berhasil dikirim.');
+                alert('Terima kasih! Pengaduan Anda berhasil dikirim ke Tim TIK KPPN Masohi.');
                 form.reset();
                 btnSubmit.innerHTML = 'Kirim Pengaduan';
                 btnSubmit.disabled = false;
             })
             .catch(error => {
-                alert('Maaf, terjadi kesalahan. Silakan coba lagi.');
+                alert('Maaf, terjadi kesalahan saat mengirim data.');
                 console.error('Error!', error.message);
                 btnSubmit.innerHTML = 'Kirim Pengaduan';
                 btnSubmit.disabled = false;
