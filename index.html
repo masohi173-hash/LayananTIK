@@ -19,33 +19,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
-            background: var(--background-gradient);
-            background-attachment: fixed;
-            color: var(--text-main);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
+            background: var(--background-gradient); background-attachment: fixed;
+            color: var(--text-main); line-height: 1.6; display: flex;
+            justify-content: center; align-items: center; min-height: 100vh; padding: 2rem 1rem;
         }
 
         .container {
-            background-color: var(--white);
-            max-width: 650px;
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            background-color: var(--white); max-width: 650px; width: 100%;
+            border-radius: 16px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); overflow: hidden;
         }
 
-        .header {
-            background-color: rgba(37, 99, 235, 0.05);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
+        .header { background-color: rgba(37, 99, 235, 0.05); padding: 2.5rem 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
         .header h1 { color: var(--primary-color); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
         .header p { color: var(--text-light); font-size: 0.95rem; }
 
@@ -87,26 +71,26 @@
     <div class="container">
         <div class="header">
             <h1>Layanan Pengaduan TIK</h1>
-            <p>KPPN Masohi - Sampaikan kendala sarana dan prasarana Teknologi Informasi & Komunikasi Anda di sini.</p>
+            <p>KPPN Masohi - Sampaikan kendala sarana dan prasarana Anda di sini.</p>
         </div>
 
         <div class="form-container">
             <form id="form-pengaduan">
                 <div class="row">
                     <div class="col form-group">
-                        <label for="nama">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="nama" class="form-control" placeholder="Masukkan nama Anda" required>
                     </div>
                     <div class="col form-group">
-                        <label for="nip">NIP / NRP</label>
-                        <input type="text" id="nip" name="nip" class="form-control" placeholder="Masukkan NIP Anda" required>
+                        <label>NIP / NRP</label>
+                        <input type="text" name="nip" class="form-control" placeholder="Masukkan NIP Anda" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col form-group">
-                        <label for="seksi">Seksi / Subbagian</label>
-                        <select id="seksi" name="seksi" class="form-control" required>
+                        <label>Seksi / Subbagian</label>
+                        <select name="seksi" class="form-control" required>
                             <option value="" disabled selected>Pilih Seksi/Subbagian</option>
                             <option value="Subbag Umum">Subbag Umum</option>
                             <option value="Seksi PD">Seksi PD</option>
@@ -117,8 +101,8 @@
                         </select>
                     </div>
                     <div class="col form-group">
-                        <label for="kategori">Kategori Kendala</label>
-                        <select id="kategori" name="kategori" class="form-control" required>
+                        <label>Kategori Kendala</label>
+                        <select name="kategori" class="form-control" required>
                             <option value="" disabled selected>Pilih Kategori</option>
                             <option value="Jaringan / Internet">Jaringan / Internet</option>
                             <option value="Perangkat Keras (PC/Laptop/Printer)">Perangkat Keras (PC/Laptop/Printer)</option>
@@ -130,14 +114,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi">Deskripsi Kendala</label>
-                    <textarea id="deskripsi" name="deskripsi" class="form-control" placeholder="Jelaskan secara detail kendala yang dialami..." required></textarea>
+                    <label>Deskripsi Kendala</label>
+                    <textarea name="deskripsi" class="form-control" placeholder="Jelaskan kendala yang dialami secara detail..." required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="lampiran">Lampiran Foto/Screenshot (Opsional)</label>
-                    <input type="file" id="lampiran" name="lampiran" class="form-control" accept="image/*">
-                    <small style="color: #6b7280; font-size: 0.8rem; margin-top: 5px; display: block;">*Format: JPG/PNG. Maksimal 3MB agar proses upload cepat.</small>
+                    <label>Lampiran Foto/Screenshot (Opsional)</label>
+                    <input type="file" id="lampiran" class="form-control" accept="image/*">
+                    <small style="color: #6b7280; font-size: 0.8rem; margin-top: 5px; display: block;">*Format: JPG/PNG. Maksimal 3MB.</small>
                 </div>
 
                 <button type="submit" class="btn-submit" id="btn-submit">Kirim Pengaduan</button>
@@ -150,8 +134,8 @@
     </div>
 
     <script>
-        // PENTING: Ganti URL di bawah ini dengan Web App URL dari Google Apps Script Anda (Hasil Deploy Terbaru)
-        const scriptURL = 'MASUKKAN_URL_WEB_APP_ANDA_DI_SINI'; 
+        // --- GANTI URL DI BAWAH INI DENGAN URL DARI LANGKAH 1 ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz1Uk1E7_s0XcjMyrjJG55fZczZXa3mWAq2ENiRruLkeZyS6elN2dnwy3osjloaueg/exec'; 
         
         const form = document.getElementById('form-pengaduan');
         const btnSubmit = document.getElementById('btn-submit');
@@ -172,40 +156,41 @@
                     const base64Data = event.target.result.split(',')[1];
                     const urlParams = new URLSearchParams();
                     for (const pair of formData.entries()) {
-                        if(pair[0] !== 'lampiran') urlParams.append(pair[0], pair[1]);
+                        urlParams.append(pair[0], pair[1]);
                     }
                     urlParams.append('fileData', base64Data);
                     urlParams.append('mimeType', file.type);
                     urlParams.append('fileName', file.name);
 
-                    kirimDataKeServer(urlParams);
+                    kirimKeServer(urlParams);
                 };
                 reader.readAsDataURL(file);
             } else {
                 const urlParams = new URLSearchParams();
                 for (const pair of formData.entries()) {
-                    if(pair[0] !== 'lampiran') urlParams.append(pair[0], pair[1]);
+                    urlParams.append(pair[0], pair[1]);
                 }
-                kirimDataKeServer(urlParams);
+                kirimKeServer(urlParams);
             }
         });
 
-        function kirimDataKeServer(dataParams) {
+        function kirimKeServer(dataParams) {
             fetch(scriptURL, { 
                 method: 'POST', 
-                mode: 'no-cors', // Menghindari error CORS saat dijalankan lokal/hosting statis
+                mode: 'no-cors', // INI KUNCI UTAMA AGAR LOLOS DI VERCEL
                 body: dataParams,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
-            .then(response => {
-                alert('Terima kasih! Pengaduan Anda berhasil dikirim ke Tim TIK KPPN Masohi.');
+            .then(() => {
+                // Karena no-cors, kita tidak menerima respon balik dari server. Kita asumsikan sukses.
+                alert('Berhasil! Pengaduan Anda telah dikirim ke Tim TIK KPPN Masohi.');
                 form.reset();
                 btnSubmit.innerHTML = 'Kirim Pengaduan';
                 btnSubmit.disabled = false;
             })
             .catch(error => {
-                alert('Maaf, terjadi kesalahan saat mengirim data.');
-                console.error('Error!', error.message);
+                alert('Gagal mengirim data. Pastikan perangkat terhubung ke internet.');
+                console.error('Error!', error);
                 btnSubmit.innerHTML = 'Kirim Pengaduan';
                 btnSubmit.disabled = false;
             });
